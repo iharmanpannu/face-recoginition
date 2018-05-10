@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Telemus</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+
+  <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+  <div id="app">
+
+    <div class="main-container">
+
+      <div ref="defaultdiv" class="main">
+        <transition name="slide-fade">
+
+          <div ref="card" v-if="show" class="card" id="card">
+
+            <div class="img">
+
+              <img :src="personUrl">
+
+            </div>
+
+            <div class="headings " style="overflow: hidden;">
+              <h1>{{person}}</h1>
+
+            </div>
+            <div class="message">
+              <p>{{message}}</p>
+            </div>
+            <div class="progress-line"></div>
+
+          </div>
+        </transition>
+
+        <div ref="cardtwo" class="card-2">
+          <!-- <div ref="username" class="user-info">
+            <h3 id="status">Prepping Resources...</h3> -->
+          <!-- <h4 id="kudos-header" style="display:none;">Recent Praise...</h4>
+            <div id="kudos"></div> -->
+          <!-- </div> -->
+          <div class="message">
+            <p id="kudos-header">
+              <span class="quote">“</span>
+              <p id="kudos">lorem</p>
+              <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur ullam quo, corrupti quasi repellat, architecto
+                sint alias delectus magni laudantium quae nesciunt illo id, nulla eos et consequatur a asperiores? Lorem
+                ipsum, dolor sit amet consectetur adipisicing elit. Eum, omnis quidem. Impedit corrupti, est consequuntur
+                atque odit assumenda nemo itaque unde eos fuga culpa quos sunt. Quam nihil distinctio minus.</p>
+            </p> -->
+          </div>
+          <div class="card-2-info">
+            <div class="img">
+              <img id="author-pic" src="" alt="">
+            </div>
+            <div class="card-2-user-info">
+              <h6>feedback written by: </h6>
+              <h4 id="author">Harman Pannu</h4>
+            </div>
+          </div>
+
+          <!-- <div class="progress-line"></div> -->
+        </div>
+
+      </div>
+
+      <!-- SIDE BAR  -->
+      <div ref="sidebarTwo" class="sidebar">
+        <img id="reload" class="logo " src="./assets/svg/logo.png" alt="logo">
+
+        <!-- CAMERA Component -->
+        <div>
+          <div @click="clearAllTime" v-show="cameraShow" ref="cameraDiv" class="camera" id="take-photo">
+            <div class="app">
+              <div class="camera">
+                <video id="camera-stream"></video>
+              </div>
+              <img id="snap">
+              <p id="error-message"></p>
+              <div class="controls">
+                <a href="#" id="delete-photo" title="Delete Photo" class="disabled">
+                  <i class="material-icons"></i>
+                </a>
+                <!-- <a href="#" id="take-photo" title="Take Photo">
+                  <i class="material-icons">camera_alt</i>
+                </a> -->
+                <!-- <a href="#" id="download-photo" download="selfie.png" title="Save Photo" class="disabled">
+                  <i class="material-icons">file_download</i>
+                </a> -->
+              </div>
+              <!-- Hidden canvas element. Used for taking snapshot of video. -->
+              <canvas></canvas>
+
+            </div>
+
+            <div class="content-holder">
+              <h3 id="status"> </h3>
+              <div class="spinner" id="spinner">
+                <div class="lds-ripple">
+                  <div></div>
+                  <div></div>
+                </div>
+              </div>
+
+              <h4 id="kudos-header" style="display:none;">Recent Praise...</h4>
+              <!-- <div id="kudos"></div> -->
+            </div>
+
+            <div class="scan-icon">
+              <a href="#" id="start-camera" class="visible">
+              </a>
+            </div>
+
+            <!-- CAMERA COMPONENT  -->
+            <!-- <div v-if="picTaken">
+              <video ref="video" id="video" width="640" height="480" autoplay></video>
+            </div>
+
+            <div v-else>
+              <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
+              <ul>
+                <li v-for="c in captures" :key="c">
+                  <img v-bind:src="c" height="50" />
+                </li>
+              </ul>
+            </div>
+            <div style="display: none">
+              <canvas ref="canvas" id="canvas" width="640" height="480"></canvas>
+              <ul>
+                <li v-for="c in captures" :key="c">
+                  <img v-bind:src="c" height="50" />
+                </li>
+              </ul> -->
+          </div>
+
+
+          <!-- CAMERA COMPONENT  -->
+
+          <!-- <div v-if="spinner" class="spinner">
+            <div class="lds-ripple">
+              <div></div>
+              <div></div>
+            </div>
+          </div> -->
+          <svg v-if="approved" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+            y="0px" viewBox="0 0 1600 1240" enable-background="new 0 0 1600 1240" xml:space="preserve">
+            <path d="m 1671,970 q 0,-40 -28,-68 L 919,178 783,42 Q 755,14 715,14 675,14 647,42 L 511,178 149,540 q -28,28 -28,68 0,40 28,68 l 136,136 q 28,28 68,28 40,0 68,-28 l 294,-295 656,657 q 28,28 68,28 40,0 68,-28 l 136,-136 q 28,-28 28,-68 z"
+              fill="rgba(0,0,0,0)" class="path" stroke-width="50" stroke-miterLimit="10" />
+          </svg>
+
+        </div>
+
+        <!--
+        <div ref="username" class="user-info">
+          <h3 id="status">Prepping Resources...</h3>
+          <h4 id="kudos-header" style="display:none;">Recent Praise...</h4>
+          <div id="kudos"></div>
+        </div> -->
+
+        <div class="camera-logo">
+          <a id="run-camera" @click="runCamera">
+            <img src="./assets/svg/facescan.svg" alt="">
+          </a>
+          <span v-if="scanner" class="scanner" id="scanner"></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- development version, includes helpful console warnings -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.2/velocity.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/2.0.2/velocity.ui.min.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js'></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+  <script src="js/vue.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/mouse.js"></script>
+  <script src="js/index.js"></script>
+
+
+</body>
+
+</html>
